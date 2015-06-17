@@ -1,0 +1,18 @@
+<html>
+
+<div>
+<h1>Departments Home</h1>
+{% if teams %}
+    <ul>
+    {% for team in teams %}
+        <li><a href="{% url 'teams:show' team.id %}">{{ team.name }}</a></li>
+        <p>Yearly Capacity (Hours): {{team.capacity}}</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No teams have been created</p>
+{% endif %}
+
+</div>
+
+</html>

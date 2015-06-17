@@ -1,0 +1,24 @@
+<html>
+<h1>New Project Entry:</h1>
+<body>
+<form action = "/projects/create" method = "post">{% csrf_token %}
+	Project Name:<input type = "text" name ='name'>
+	Description:<br><textarea type = "text" name ='capacity'></textarea>
+
+	<input type = "submit" value = "Submit">
+	</form>
+</body>
+
+
+
+
+
+
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+</html>
