@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 # Create your models here.
+
+STATUS = (('PREGATE', 'Pre-Gate'), ('GATE1', 'Gate 1'), ('GATE2', 'Gate 2'), ('GATE3', 'Gate 3'), ('GATE4', 'Gate 4'), ('CLOSED', 'Launched'),)
+DEV_TYPE = (('NPI', 'New Product Introdcution'), ('PI', 'Product Improvement'), ('SUPPORT', 'Support'), ('SPL', 'SPL'), ('OTHER', 'Other'),)
+MARKET = (('OUTDOOR', 'Outdoor'), ('INDOOR', 'Indoor'), ('CONTROLS', 'Controls'), ('LUMENAREA', 'Lumenarea'), ('LUMENALPHA', 'Lumenalpha'),)
+
 class Department(models.Model):
 	name = models.CharField(max_length=200)
 	capacity = models.IntegerField(blank=True)
@@ -29,6 +35,9 @@ class Dept_Hours(models.Model):
 	project = models.ForeignKey(Project)
 	hours = models.IntegerField()
 
+class ProjectForm(ModelForm):
+	class Meta:
+		model = Project
 
 
 	# ee_days = models.IntegerField(blank=True)

@@ -2,8 +2,37 @@
 <h1>New Project Entry:</h1>
 <body>
 <form action = "/projects/create" method = "post">{% csrf_token %}
-	Project Name:<input type = "text" name ='name'>
-	Description:<br><textarea type = "text" name ='capacity'></textarea>
+	Project Name:<br><input type = "text" name ='name'><br>
+	Market:<br>
+	<select>
+		<option value="Outdoor">Outdoor</option>
+		<option value="Indoor">Indoor</option>
+		<option value="Lumenarea">Lumenarea</option>
+		<option value="Controls">Controls</option>
+		<option value="Lumenalpha">Lumenalpha</option>
+	</select><br>
+	Developement Type:<br>
+	<select>
+		<option value="NPI">NPI</option>
+		<option value="PI">PI</option>
+		<option value="Support">Support</option>
+		<option value="SPL">SPL</option>
+		<option value="Other">Other</option>
+	</select><br>
+	Status:<br>
+	<select>
+		<option value="Pre-Gate">R&D/Gate 0</option>
+		<option value="Gate1">Gate 1</option>
+		<option value="Gate2">Gate 2</option>
+		<option value="Gate3">Gate 3</option>
+		<option value="Gate4">Gate 4</option>
+		<option value="closed">Launched</option>
+		<option value="na">N/A</option>
+	</select><br>
+	Fiscal Year: (ex: 1999)<br><input type = "text" name ='year'><br>
+	Acquisition Activity: <input type="checkbox" name="acquisition"><br>
+	Fast-Track: <input type="checkbox" name="fast"><br>
+	Description:<br><textarea type = "text" name ='capacity'></textarea><br>
 
 	<input type = "submit" value = "Submit">
 	</form>
@@ -14,11 +43,22 @@
 
 
 
-<select>
+<!-- <select>
   <option value="volvo">Volvo</option>
   <option value="saab">Saab</option>
   <option value="mercedes">Mercedes</option>
   <option value="audi">Audi</option>
 </select>
 
-</html>
+</html> -->
+
+<!-- departments = models.ManyToManyField(Department, through = 'Dept_Hours')
+	name = models.CharField(max_length=200)
+	status = models.CharField(max_length=200)
+	dev_type = models.CharField(max_length=200)
+	market = models.CharField(max_length=200)
+	fiscal_year = models.CharField(max_length=4, blank=True)
+	description = models.TextField(blank=True)
+	pubdate = models.DateField(auto_now_add=True)
+	acquisition = models.BooleanField()
+	fast_track = models.BooleanField() -->

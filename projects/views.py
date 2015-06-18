@@ -5,14 +5,14 @@ from django.http import HttpResponse
 # Create your views here.
 def main(request):
 	return HttpResponse('This is your home page')
-	
+
 def index(request):
 	return HttpResponse('This is your index of projects')
 
-def add_project(request):
-	return HttpResponse('add project form')
+def new(request):
+	return render(request, 'projects/new.html', {})
 
-def create_project(request):
+def create(request):
 	proj_info = {}
 	proj_info['name'] = request.POST['name']
 	proj_info['status'] = request.POST['status']
@@ -27,3 +27,6 @@ def create_project(request):
 	proj_info['opt'] = request.POST['opt_days']
 	proj_info['des'] = request.POST['des_days']
 	return HttpResponse('this is your new project')
+
+def show(request, proj_id):
+	return HttpResponse('show project')
