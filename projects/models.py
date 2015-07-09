@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+#from django.forms import ModelForm
 
 # Create your models here.
 
@@ -18,9 +18,9 @@ class Department(models.Model):
 class Project(models.Model):
 	departments = models.ManyToManyField(Department, through = 'Dept_Hours')
 	name = models.CharField(max_length=200)
-	status = models.CharField(max_length=200)
-	dev_type = models.CharField(max_length=200)
-	market = models.CharField(max_length=200)
+	status = models.CharField(max_length=200, choices = STATUS)
+	dev_type = models.CharField(max_length=200, choices = DEV_TYPE)
+	market = models.CharField(max_length=200, choices = MARKET)
 	fiscal_year = models.CharField(max_length=4, blank=True)
 	description = models.TextField(blank=True)
 	pubdate = models.DateField(auto_now_add=True)
@@ -33,11 +33,12 @@ class Project(models.Model):
 class Dept_Hours(models.Model):
 	department = models.ForeignKey(Department)
 	project = models.ForeignKey(Project)
-	hours = models.IntegerField()
+	hours = models.IntegerField(blank=True)
 
-class ProjectForm(ModelForm):
-	class Meta:
-		model = Project
+# class ProjectForm(ModelForm):
+# 	class Meta:
+# 		model = Project
+# 		fields = ['name', 'status', 'dev_type', 'market', 'departments', 'fiscal_year', 'description','acquisition', 'fast_track']
 
 
 	# ee_days = models.IntegerField(blank=True)

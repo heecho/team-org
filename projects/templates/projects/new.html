@@ -4,7 +4,7 @@
 <form action = "/projects/create" method = "post">{% csrf_token %}
 	Project Name:<br><input type = "text" name ='name'><br>
 	Market:<br>
-	<select>
+	<select name = 'market'>
 		<option value="Outdoor">Outdoor</option>
 		<option value="Indoor">Indoor</option>
 		<option value="Lumenarea">Lumenarea</option>
@@ -12,7 +12,7 @@
 		<option value="Lumenalpha">Lumenalpha</option>
 	</select><br>
 	Developement Type:<br>
-	<select>
+	<select name = 'dev_type'>
 		<option value="NPI">NPI</option>
 		<option value="PI">PI</option>
 		<option value="Support">Support</option>
@@ -20,7 +20,7 @@
 		<option value="Other">Other</option>
 	</select><br>
 	Status:<br>
-	<select>
+	<select name = 'status'>
 		<option value="Pre-Gate">R&D/Gate 0</option>
 		<option value="Gate1">Gate 1</option>
 		<option value="Gate2">Gate 2</option>
@@ -30,35 +30,22 @@
 		<option value="na">N/A</option>
 	</select><br>
 	Fiscal Year: (ex: 1999)<br><input type = "text" name ='year'><br>
-	Acquisition Activity: <input type="checkbox" name="acquisition"><br>
-	Fast-Track: <input type="checkbox" name="fast"><br>
-	Description:<br><textarea type = "text" name ='capacity'></textarea><br>
+	<input type="hidden" name='acquisition' value = "False">
+	Acquisition Activity: <input type="checkbox" name='acquisition'><br>
+	<input type="hidden" name='fast' value = "False">
+	Fast-Track: <input  type="checkbox" name="fast"><br>
+	Departments: (select multiple)<br>
+	<select name = 'teams' multiple>
+		{% if teams %}
+			{% for team in teams %}
+				<option value="{{team.id}}">{{team.name}}</option>
+			{% endfor %}
+		{% endif %}
+	</select><br>
+	Description:<br><textarea type = "text" name ='description'></textarea><br>
 
-	<input type = "submit" value = "Submit">
+	<input type = "submit" value = "Assign Hours>>">
 	</form>
 </body>
+</html> 
 
-
-
-
-
-
-<!-- <select>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
-
-</html> -->
-
-<!-- departments = models.ManyToManyField(Department, through = 'Dept_Hours')
-	name = models.CharField(max_length=200)
-	status = models.CharField(max_length=200)
-	dev_type = models.CharField(max_length=200)
-	market = models.CharField(max_length=200)
-	fiscal_year = models.CharField(max_length=4, blank=True)
-	description = models.TextField(blank=True)
-	pubdate = models.DateField(auto_now_add=True)
-	acquisition = models.BooleanField()
-	fast_track = models.BooleanField() -->

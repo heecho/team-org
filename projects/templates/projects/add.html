@@ -1,0 +1,16 @@
+<html>
+<h1>Assign Project Hours:</h1>
+<body>
+<h2>{{project.name}}</h2>
+<form action = "{% url 'projects:assign' project.id %}" method = "post">{% csrf_token %}
+
+{% if teams %}
+{% for team in teams %}
+	<h4>{{team.name}}</h4>
+	Project Hours:<br><input type = "text" name ='hours'><br>
+{% endfor %}
+{% endif %}
+<input type = "submit" value = "Submit">
+</form>
+</body>
+</html>

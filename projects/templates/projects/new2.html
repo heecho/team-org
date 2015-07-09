@@ -1,0 +1,12 @@
+<html>
+<h1>New Project Entry:</h1>
+<body>
+<form action = "/projects/create" method = "post">{% csrf_token %}
+{% load bootstrap %}
+
+{{ form|bootstrap_horizontal }}
+<input type = "submit" value = "Assign Hours>>">
+	</form>
+</body>
+
+</html>

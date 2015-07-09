@@ -1,18 +1,38 @@
 <html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	data = {{team_data|safe}}
+        var data = google.visualization.arrayToDataTable(data);
+        var options = {
+          title: 'Department Headcount',
+          pieHole: 0.4,
+        };
 
-<div>
-<h1>Departments Home</h1>
-{% if teams %}
-    <ul>
-    {% for team in teams %}
-        <li><a href="{% url 'teams:show' team.id %}">{{ team.name }}</a></li>
-        <p>Yearly Capacity (Hours): {{team.capacity}}</p>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No teams have been created</p>
-{% endif %}
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+  	<h1>Departments Home</h1>
+    <div id="donutchart" style="width: 1500px; height: 1000px;"></div>
+    <div id="deptlist">
 
-</div>
+		{% if teams %}
+		    <ul>
+		    {% for team in teams %}
+		        <li><a href="{% url 'teams:show' team.id %}">{{ team.name }}</a></li>
+		        <p>Yearly Capacity (Hours): {{team.capacity}}</p>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+		    <p>No teams have been created</p>
+		{% endif %}
 
+	</div>
+  </body>
 </html>

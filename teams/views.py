@@ -3,11 +3,18 @@ from django.http import HttpResponse, HttpResponseRedirect
 from projects.models import Project, Department
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+import json
 
 # Create your views here.
 def index(request):
 	teams = Department.objects.all()
-	return render(request, 'teams/home.html', {'teams':teams})
+	team_data = [['team_name', 'headcount']]
+	for team in teams:
+		dept = team.name
+		headcount = team.capacity
+		lst = [dept,headcount]
+		team_data.append(lst)
+	return render(request, 'teams/home.html', {'teams':teams, 'team_data':json.dumps(team_data)})
 	#return HttpResponse('This is your index of departments')
 
 def new(request):
