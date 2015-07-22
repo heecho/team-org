@@ -8,7 +8,7 @@
       	data = {{team_data|safe}}
         var data = google.visualization.arrayToDataTable(data);
         var options = {
-          title: 'Department Headcount',
+          title: 'Department Capacity',
           pieHole: 0.4,
         };
 
@@ -19,7 +19,8 @@
   </head>
   <body>
   	<h1>Departments Home</h1>
-    <div id="donutchart" style="width: 1500px; height: 1000px;"></div>
+  	<a href = "{% url 'teams:org' %}">View Org Charts</a>
+    <div id="donutchart" style="width: 1500px; height: 900px;"></div>
     <div id="deptlist">
 
 		{% if teams %}

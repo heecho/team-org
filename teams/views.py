@@ -20,6 +20,9 @@ def index(request):
 def new(request):
 	return render(request, 'teams/new.html', {})
 
+def org(request):
+	return render(request, 'teams/org.html', {})
+
 def create(request):
 	d = Department()
 	d.name = request.POST['name']
